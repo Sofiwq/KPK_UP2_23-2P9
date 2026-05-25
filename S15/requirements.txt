@@ -1,5 +1,1 @@
 peewee
-fastapi
-pydantic
-typing
-uvicorn
