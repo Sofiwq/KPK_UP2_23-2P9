@@ -19,6 +19,7 @@ class Assignment(BaseModel):
     teacher_id = IntegerField(null=False)      # ID из Teacher Service
     group_id = IntegerField(null=False)        # ID из Group Service
     discipline_id = IntegerField(null=False)   # ID из Discipline Service
+    hours = IntegerField(null=False)           # Количество часов нагрузки
     is_active = BooleanField(default=True)
 
     class Meta:
