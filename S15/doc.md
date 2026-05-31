@@ -7,6 +7,7 @@
 **Принципы:**
 - В БД сервиса есть только таблица `Assignment`.
 - Поля `teacher_id`, `group_id`, `discipline_id` — обычные целочисленные поля (не внешние ключи).
+- Поле `hours` хранит количество часов нагрузки для конкретного назначения.
 - Сервис не проверяет существование ID в источниках — это ответственность клиента.
 - Удаление связей — логическое через `is_active`.
 
@@ -21,6 +22,7 @@
 | `teacher_id` | ID преподавателя (из Teacher Service) | Да | int | > 0 |
 | `group_id` | ID группы (из Group Service) | Да | int | > 0 |
 | `discipline_id` | ID дисциплины (из Discipline Service) | Да | int | > 0 |
+| `hours` | Количество часов нагрузки | Да | int | > 0 |
 
 **Уникальные комбинации параметров:**  
 - `teacher_id + group_id + discipline_id`
@@ -33,6 +35,7 @@
 | `teacher_id` | int |
 | `group_id` | int |
 | `discipline_id` | int |
+| `hours` | int |
 | `is_active` | bool |
 
 ---
@@ -44,6 +47,7 @@
 | `teacher_id` | ID преподавателя | Нет | int | > 0 |
 | `group_id` | ID группы | Нет | int | > 0 |
 | `discipline_id` | ID дисциплины | Нет | int | > 0 |
+| `hours` | Количество часов нагрузки | Нет | int | > 0 |
 
 **Информация, возвращаемая в случае удачного изменения:**
 
@@ -53,6 +57,7 @@
 | `teacher_id` | int |
 | `group_id` | int |
 | `discipline_id` | int |
+| `hours` | int |
 | `is_active` | bool |
 
 ---
@@ -72,6 +77,7 @@
 | `teacher_id` | ID преподавателя | int |
 | `group_id` | ID группы | int |
 | `discipline_id` | ID дисциплины | int |
+| `hours` | Количество часов нагрузки | int |
 | `is_active` | Признак активности | bool |
 
 **Возвращает:** объект Assignment или `None`.
@@ -85,6 +91,7 @@
 | `teacher_id` | Фильтр по преподавателю | int |
 | `group_id` | Фильтр по группе | int |
 | `discipline_id` | Фильтр по дисциплине | int |
+| `hours` | Фильтр по количеству часов нагрузки | int |
 | `is_active` | Фильтр по активности | bool |
 
 **Информация возвращается в виде списка:**
@@ -95,10 +102,24 @@
 | `teacher_id` | int |
 | `group_id` | int |
 | `discipline_id` | int |
+| `hours` | int |
 | `is_active` | bool |
 
 ---
 
 ## ER-диаграмма
+
+```text
++----------------------+
+|      Assignment      |
++----------------------+
+| PK id                |
+| teacher_id           |
+| group_id             |
+| discipline_id        |
+| hours                |
+| is_active            |
++----------------------+
+```
 
 ![ER-диаграмма](erd.png)
